@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umer Iftikhar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Umer Iftikhar</h1>
+        <p>
+            <a href="mailto:umeriftikharch11@gmail.com">umeriftikharch11@gmail.com</a><br>
+            <a href="https://linkedin.com/in/umer-iftikhar-567538383">LinkedIn</a><br>
+            <a href="https://github.com/umerIcy">GitHub</a><br>
+            <a href="https://drive.google.com/file/d/1Zv9IwQtK5Y4kANg9SxeJyxV6bBd3jchy/view?usp=sharing">My CV</a>
+        </p>
+    </header>
+
+    <main>
+        <section>
+            <h2>About</h2>
+            <p>I am a software engineer based in Islamabad, Pakistan with two years of experience in backend development. I build systems that handle real traffic, real users, and real constraints. Most of my work involves Python, Java, and Go. I have worked on encrypted communication platforms, AI-powered recognition systems, and high-throughput proxy middleware. I studied Software Engineering at FAST-NUCES.</p>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+
+            <article>
+                <h3>Real-Time License Plate Recognition System</h3>
+            <p>Six cameras feeding into one RTX 4070 node. The system reads plates, detects wrong lane violations, and captures evidence automatically. Users can flag a plate, and the system alerts them whenever it appears, letting them track a vehicle's journey across camera locations.</p>
+                <p><strong>Stack:</strong> Python, NVIDIA DeepStream</p>
+                <p><strong>What I learned:</strong> Video is unforgiving. Drop a few frames and your "real-time" system feels broken. I learned to obsess over milliseconds. Squeezing six feeds onto one GPU meant understanding exactly where compute was going and cutting what I could not afford.</p>
+                <p><strong>Interesting finding:</strong> In the lab, accuracy was great. In the field, a dusty plate or bad angle could tank it. I spent weeks tuning for conditions I could not fully control. That gap between demo and deployment stuck with me.</p>
+            </article>
+
+            <article>
+                <h3>Offline AI Assistant</h3>
+                <p>A 400 billion parameter model running on local hardware with no internet. Llama Maverick distributed across nodes using Ray and custom coordination scripts. Separate pipelines for RAG, OCR on scanned documents, and general queries. Exposed as a chatbot and an API for internal tools. vLLM handles the caching.</p>
+                <p><strong>Stack:</strong> Python, vLLM, Ray, Bash</p>
+                <p><strong>What I learned:</strong> I spent more time thinking about what happens when things break than when they work. A node drops mid-inference. The network hiccups. Context gets lost. Building the happy path took days. Making it survive the unhappy paths took weeks. Distributed systems punish optimism.</p>
+                <p><strong>Interesting finding:</strong> When you cannot just call an API, you learn what is actually happening. Batching strategies, memory pressure across nodes, how tokens move through the model. I understood more about LLMs after this project than I did after a year of using them through APIs.</p>
+            </article>
+
+            <article>
+                <h3>Nationwide Encrypted Communication Platform</h3>
+                <p>End-to-end encrypted voice calls and SMS that work across country. 5,000 concurrent users, under 150ms latency. I wrote a custom Python wrapper around Asterisk and Baresip to handle call setup, encryption handshakes, and message routing. The hard part was making it work reliably across different network conditions.</p>
+                <p><strong>Stack:</strong> Asterisk, Baresip, Python, SIP</p>
+                <p><strong>What I learned:</strong> I thought the crypto would be the challenge. It was not. NAT traversal broke me for weeks. Calls would connect fine in one network and fail silently in another. I spent more time debugging connectivity than anything else. Real networks are hostile environments.</p>
+                <p><strong>Interesting finding:</strong> At 5,000 users, the bottleneck was not encryption or bandwidth. It was session state. Keeping track of who is connected to whom, handling dropped calls gracefully, syncing state across the system. The boring infrastructure work turned out to be the hardest part.</p>
+            </article>
+
+            <article>
+                <h3>Proxy Middleware</h3>
+                <p><a href="https://github.com/umerIcy/proxybridge">GitHub</a></p>
+                <p>Routes traffic through HTTP, HTTPS, and SOCKS5. SQLite handles access controls, who can use what, bandwidth limits, authentication. Prometheus scrapes the metrics, Grafana makes them visible. 500 GB flows through it daily.</p>
+                <p><strong>Stack:</strong> Go, SQLite, Prometheus, Grafana</p>
+                <p><strong>What I learned:</strong> Every byte matters when you are proxying at scale. I had to think about connections differently. Not just opening them, but holding them, reusing them, knowing when to let go. Go made the concurrency manageable, but the real learning was in the edge cases nobody warns you about.</p>
+                <p><strong>Interesting finding:</strong> The system usually failed quietly before it failed loudly. By the time errors showed up, the real problem had already been happening for minutes. Watching behavior over time mattered more than reacting to alerts.</p>
+            </article>
+
+            <article>
+                <h3>Commercial Parking Management System</h3>
+                <p>Cars come in, system reads the plate, assigns a slot, tracks time, bills on exit. Sounds simple until it is not.</p>
+                <p><strong>Stack:</strong> Next.js, Node.js, MySQL</p>
+                <p><strong>What I learned:</strong> I spent more time on what happens when things go wrong than on the happy path. What if the plate is dirty. What if someone disputes a charge. What if the system crashes mid-transaction. The edge cases taught me more than the core logic.</p>
+                <p><strong>Interesting finding:</strong> We added a pre-booking feature almost as an afterthought. It ended up cutting manual check-ins by 70%. Sometimes the small addition changes everything.</p>
+            </article>
+
+            <article>
+                <h3>Telecom Invoicing System</h3>
+                <p><a href="https://github.com/umeriftikhar/telecom-invoicing">GitHub</a></p>
+                <p>Improved reliability and performance of a billing system handling invoice generation for a telecom company.</p>
+                <p><strong>Stack:</strong> Spring Boot, MySQL</p>
+                <p><strong>What I learned:</strong> Legacy systems carry history. Understanding why code was written a certain way matters before changing it. Context saves time.</p>
+                <p><strong>Interesting finding:</strong> A 30% reduction in invoice generation time came mostly from a handful of slow database queries. Small, targeted changes often beat large rewrites.</p>
+            </article>
+
+            <article>
+                <h3>HR Talent Sourcing Tool</h3>
+                <p><a href="https://github.com/umerIcy/collabcenter-hrm-platform">GitHub</a></p>
+                <p>Enter a job description, the system finds matching candidates on LinkedIn, scores them, and lets HR build drag-and-drop outreach campaigns. WebHooks keep everything in sync as campaigns run.</p>
+                <p><strong>Stack:</strong> Django, MySQL, Web Scraping, WebHooks, REST APIs</p>
+                <p><strong>What I learned:</strong> Scraping teaches you humility. Go too fast and you get blocked. Go too slow and the data is stale. I learned to respect rate limits not because I had to, but because breaking them breaks the ecosystem for everyone.</p>
+                <p><strong>Interesting finding:</strong> Matching candidates to jobs sounds like a solved problem until you try it. A job asks for "React experience" but the candidate wrote "built SPAs in JavaScript." Same skill, different words. I spent more time on synonyms and fuzzy matching than I expected. Language is messy.</p>
+            </article>
+        </section>
+
+        <section>
+            <h2>What I Know</h2>
+
+            <h3>Languages</h3>
+            <p>Python, Java, Go, JavaScript, TypeScript, PHP</p>
+
+            <h3>Frameworks</h3>
+            <p>Spring Boot, Django, Next.js, ReactJS, TensorFlow</p>
+
+            <h3>Databases</h3>
+            <p>MySQL, PostgreSQL, MongoDB, Cassandra, Redis, Elasticsearch</p>
+
+            <h3>Infrastructure</h3>
+            <p>Docker, Kubernetes, AWS (EC2, S3, Lambda), Linux, CI/CD with GitHub Actions and Jenkins</p>
+
+            <h3>Protocols and Tools</h3>
+            <p>REST APIs, gRPC, Microservices, Asterisk (VoIP), HTTP/SOCKS5 Proxies, Prometheus, Grafana, ELK Stack</p>
+
+            <h3>Concepts</h3>
+            <p>System architecture, scalability patterns, real-time processing, NAT traversal, end-to-end encryption, database optimization</p>
+        </section>
+
+        <section>
+            <h2>What I Don't Know (Yet)</h2>
+            <p>Mobile development (iOS). Rust. Deep reinforcement learning. Distributed consensus algorithms beyond basic understanding. Formal verification methods. Low-level systems programming in C. Flying a F16.</p>
+        </section>
+
+        <section>
+            <h2>How I Work</h2>
+            <p>I like knowing the boundaries before I start. What can the hardware handle. What will the network tolerate. What does the user actually need. I build piece by piece, checking if my assumptions hold before going further. When something breaks, I resist the urge to fix it immediately. I want to know why it broke first. I have learned to trust working code over clever code. When I get stuck, I read. Documentation, source code, whatever gets me unstuck. And when I genuinely do not know something, I ask. Pretending costs more than admitting.</p>
+        </section>
+
+        <section>
+            <h2>How I See Life</h2>
+            <p>There is a penguin in a <a href="https://www.youtube.com/watch?v=zWH_9VRWn8Y">documentary</a> who leaves its colony and walks alone toward the mountains, away from the ocean, away from food, toward nothing. No one knows why. It just goes. I think about that penguin sometimes. Not because I want to walk toward nothing, but because I respect choosing a direction and committing to it, even when the outcome is uncertain. I do not believe in shortcuts. Most things worth doing take longer than expected. Failure does not scare me as much as standing still does. I would rather move and be wrong than stay safe and never know. Small steps, taken regularly, add up. Or they do not. Either way, you walked.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Islamabad, Pakistan</p>
+    </footer>
+</body>
+</html>
